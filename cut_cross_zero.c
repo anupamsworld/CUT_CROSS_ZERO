@@ -6,7 +6,7 @@ typedef struct for_player{
 char first_name[20] ;
 }player ;
 char plate[9][9],cpy_plate[9][9] ;
-int player_option,turn,sub_turn,game_over_response,overall_point_plyr1,overall_point_plyr2,row,column,total_match,can_win,turn_of_both_plyr,view_mood=2 ;
+int player_option,turn,sub_turn,game_over_response,overall_point_plyr1,overall_point_plyr2,row,column,total_match,can_win,turn_of_both_plyr,view_mode=2 ;
 int continue_win_plyr1,continue_win_plyr2,continue_lose_plyr1,continue_lose_plyr2,continue_match_drawn ;
 int posi=0 ;
 int bonus1,level;
@@ -27,7 +27,7 @@ continue_lose_plyr1 and continue_lose_plyr2=holds the continuously losed  match(
 continue_match_drawn=holds the continuously drawn or tied  match(es) for the last match(es)
 level=holds the level chosen by the user/player ,1 for low,2 for high--- it only applicable during the match with COMPUTER
 bonus1=holds how many times the player(playing with computer) unable to win because of drawn or tied match(es) or for becoming loser
-view_mood=holds 1(when the view of the plate or play box is like list,here previous turns are displayed) and 0(here view is static, previous turns are not displayed here)
+view_mode=holds 1(when the view of the plate or play box is like list,here previous turns are displayed) and 0(here view is static, previous turns are not displayed here)
 posi=it is used to hold the returned position by the function get_posi_for_com  for computer's position
 */
 void default_for_more_match(){//this function is to default all the values to continue to the other one match
@@ -577,7 +577,7 @@ void cycle_the_game(){//function to control the total game process
                         check_game_over_response(1);
                         sub_turn=1 ;
                 }
-                if(view_mood==2){
+                if(view_mode==2){
                     system("cls");
                     if(player_option==1 && sub_turn==1){
                         printf("\n%s has taken position %d",player2.first_name,posi);
@@ -653,7 +653,7 @@ void cycle_the_game(){//function to control the total game process
 void options(){//function of game option
     int op1;
     do{
-printf("\n\n\n~~ CUT CROSS ZERO ~~          Version :: 3.0\n\nCHOOSE OPTION\n1. PLAY WITH COMPUTER \n2. PLAY TWO PLAYERS \n3. HELP ABOUT THIS GAME \n4. ABOUT PROGRAMMER \n5. QUIT FROM GAME \n6. CHANGE MOOD \n%c%c%c ",16,16,16);
+printf("\n\n\n~~ CUT CROSS ZERO ~~          Version :: 3.0\n\nCHOOSE OPTION\n1. PLAY WITH COMPUTER \n2. PLAY TWO PLAYERS \n3. HELP ABOUT THIS GAME \n4. ABOUT PROGRAMMER \n5. QUIT FROM GAME \n6. CHANGE MODE \n%c%c%c ",16,16,16);
 fflush(stdin);
 scanf("%d",&op1);
 if(op1!=1 && op1!=2 && op1!=3 && op1!=4 && op1!=5 && op1!=6){
@@ -708,35 +708,35 @@ else if(op1==5){
 else if(op1==6){
     system("cls");
     {
-        int temp_view_mood=view_mood ;
+        int temp_view_mode=view_mode ;
         do{
 
-                    printf("\n\nCHANGE VIEW MOOD");
-                    if(view_mood==1){
+                    printf("\n\nCHANGE VIEW MODE");
+                    if(view_mode==1){
                         printf("(LIST VIEW)");
                     }
-                    else if(view_mood==2){
+                    else if(view_mode==2){
                         printf("(STATIC VIEW)");
                     }
                     printf("\n\n1.LIST VIEW (play box will be shown in list, here previous turn will be shown)\n\n2.STATIC VIEW (play box will be shown in a single static box, previous turn will not be shown)\n\n%c%c%c ",16,16,16);
                     fflush(stdin);
-                    scanf("%d",&temp_view_mood);
-                    if(temp_view_mood!=1 && temp_view_mood!=2){
+                    scanf("%d",&temp_view_mode);
+                    if(temp_view_mode!=1 && temp_view_mode!=2){
                         system("cls") ;
                         printf("\nSorry ! Wrong entry. Try again...");
                         Sleep(1000) ;
                     }
-        }while(temp_view_mood!=1 && temp_view_mood!=2) ;
-        view_mood=temp_view_mood ;
+        }while(temp_view_mode!=1 && temp_view_mode!=2) ;
+        view_mode=temp_view_mode ;
     }
-    if(view_mood==1){
+    if(view_mode==1){
             system("cls");
-        printf("\nVIEW MOOD Successfully changed to LIST VIEW");
+        printf("\nVIEW MODE Successfully changed to LIST VIEW");
         Sleep(1000);
     }
-    else if(view_mood==2){
+    else if(view_mode==2){
             system("cls");
-        printf("\nVIEW MOOD Successfully changed to STATIC VIEW");
+        printf("\nVIEW MODE Successfully changed to STATIC VIEW");
         Sleep(1000);
     }
     //options();
